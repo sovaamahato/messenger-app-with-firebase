@@ -30,8 +30,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FlutterChat',
       theme: ThemeData().copyWith(
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: Color.fromARGB(255, 49, 28, 101))),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color.fromARGB(255, 49, 28, 101),
+        ),
+      ),
       home: AuthGate(),
     );
   }

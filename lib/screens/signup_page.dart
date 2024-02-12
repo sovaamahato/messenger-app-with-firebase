@@ -13,6 +13,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
@@ -31,7 +32,7 @@ class _SignupPageState extends State<SignupPage> {
     final authService = Provider.of<AuthService>(context, listen: false);
     try {
       await authService.signUpWithEmailAndPassword(
-          emailController.text, passwordController.text);
+          emailController.text, passwordController.text, nameController.text);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -74,6 +75,15 @@ class _SignupPageState extends State<SignupPage> {
               padding: const EdgeInsets.all(16),
               child: Form(
                   child: Column(mainAxisSize: MainAxisSize.min, children: [
+                //name
+                TextFormField(
+                  controller: nameController,
+                  decoration: const InputDecoration(
+                    labelText: "User name",
+                  ),
+                  autocorrect: false,
+                  textCapitalization: TextCapitalization.none,
+                ),
                 //email
                 TextFormField(
                   controller: emailController,
