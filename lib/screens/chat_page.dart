@@ -3,6 +3,7 @@ import 'package:chat_app/services/chat/chat_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ChatPage extends StatefulWidget {
   final String receiverUserEmail;
@@ -31,6 +32,9 @@ class _ChatPageState extends State<ChatPage> {
     //clear text controller message send garepxi
     _messageController.clear();
   }
+
+  //----------------\
+  bool isMe = true;
 
   @override
   Widget build(BuildContext context) {
@@ -132,9 +136,11 @@ class _ChatPageState extends State<ChatPage> {
         ? Alignment.centerRight
         : Alignment.centerLeft;
 
-    print("====-------------------------------------------");
-    print(data['senderEmail']);
-
+//to get the time
+    DateTime myDateTime = DateTime.parse(data['timestamp'].toDate().toString());
+    String formattedDateTime = DateFormat('h:mm a').format(myDateTime);
+    //set isme variable for chatbubble borrradius
+    isMe = (data['senderId'] == _firebaseAuth.currentUser!.uid) ? true : false;
     return Container(
       alignment: alignment,
       child: Padding(
@@ -147,10 +153,11 @@ class _ChatPageState extends State<ChatPage> {
             children: [
               // Text("Message")
               Text(
-                data['senderEmail'],
+                formattedDateTime.toString(),
                 style: TextStyle(color: Colors.black),
               ),
               ChatBubble(
+                isMe: isMe,
                 message: data['message'],
               )
             ]),

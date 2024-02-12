@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-//import 'package:intl/intl.dart' as intl;
+import 'package:intl/intl.dart' as intl;
 
 class ChatBubble extends StatelessWidget {
   final String message;
+  final bool isMe;
 
-  const ChatBubble({super.key, required this.message});
+  const ChatBubble({super.key, required this.message, required this.isMe});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +15,15 @@ class ChatBubble extends StatelessWidget {
       padding: const EdgeInsets.all(13),
       margin: const EdgeInsets.only(bottom: 9),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 176, 96, 190),
+        color: Color.fromARGB(255, 171, 113, 181),
         //color: data['uid'] == currentUser!.uid ? redColor : darkFontGrey,
         borderRadius: BorderRadius.only(
           topLeft: const Radius.circular(20),
           topRight: const Radius.circular(20),
+          bottomRight:
+              isMe ? const Radius.circular(0) : const Radius.circular(20),
+          bottomLeft:
+              isMe ? const Radius.circular(20) : const Radius.circular(0),
           //bottomRight: data['uid'] == currentUser!.uid
           //       ? const Radius.circular(0)
           //       : const Radius.circular(20),
@@ -28,7 +33,10 @@ class ChatBubble extends StatelessWidget {
         ),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(message),
+        Text(
+          message,
+          style: TextStyle(color: Colors.white, fontSize: 16),
+        ),
       ]),
     );
     ;
