@@ -1,5 +1,7 @@
 import 'package:chat_app/components/my_btn.dart';
+import 'package:chat_app/services/auth/auth_services.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignupPage extends StatefulWidget {
   final void Function()? onTap;
@@ -16,6 +18,30 @@ class _SignupPageState extends State<SignupPage> {
   final passwordController = TextEditingController();
 
   final confirmPassController = TextEditingController();
+
+  //sign up user method
+  void signUp() async {
+    if (passwordController.text != confirmPassController.text) {
+      const SnackBar(
+        content: Text("Password do not match"),
+      );
+      return;
+    }
+    //get auth service
+    final authService = Provider.of<AuthService>(context, listen: false);
+    try {
+      await authService.signUpWithEmailAndPassword(
+          emailController.text, passwordController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.toString(),
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +123,7 @@ class _SignupPageState extends State<SignupPage> {
                     return null;
                   },
                 ),
-                MyBtn(onpressed: () {}, text: "Sign Up"),
+                MyBtn(onpressed: signUp, text: "Sign Up"),
                 TextButton(
                     onPressed: widget.onTap,
                     child: const Text("Already have an account? Login")),
