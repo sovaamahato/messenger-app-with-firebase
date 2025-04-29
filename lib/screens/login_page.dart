@@ -1,6 +1,6 @@
 import 'package:chat_app/components/my_btn.dart';
 import 'package:chat_app/services/auth/auth_services.dart';
-import 'package:chat_app/services/auth/auth_services.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
