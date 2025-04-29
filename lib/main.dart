@@ -1,6 +1,6 @@
 import 'package:chat_app/services/auth/auth_gate.dart';
 import 'package:chat_app/services/auth/auth_services.dart';
-import 'package:chat_app/services/auth/login_or_register.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,10 +31,10 @@ class MyApp extends StatelessWidget {
       title: 'FlutterChat',
       theme: ThemeData().copyWith(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Color.fromARGB(255, 49, 28, 101),
+          seedColor: const Color.fromARGB(255, 49, 28, 101),
         ),
       ),
-      home: AuthGate(),
+      home: const AuthGate(),
     );
   }
 }

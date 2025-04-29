@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class SignupPage extends StatefulWidget {
   final void Function()? onTap;
 
-  SignupPage({super.key, required this.onTap});
+  const SignupPage({super.key, required this.onTap});
 
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -61,7 +61,7 @@ class _SignupPageState extends State<SignupPage> {
             width: 180,
             child: Image.asset("assets/images/chat.png"),
           ),
-          Text(
+          const Text(
             "Create New Account!",
             style: TextStyle(color: Colors.white),
           ),
@@ -96,6 +96,7 @@ class _SignupPageState extends State<SignupPage> {
                         !value.contains('@')) {
                       return "please enter valid email address";
                     }
+                    return null;
                   },
                   keyboardType: TextInputType.emailAddress,
                   autocorrect: false,

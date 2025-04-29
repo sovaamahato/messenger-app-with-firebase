@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 class AuthScreen extends StatefulWidget {
   final void Function()? onTap;
-  AuthScreen({super.key, required this.onTap});
+  const AuthScreen({super.key, required this.onTap});
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -54,7 +54,7 @@ class _AuthScreenState extends State<AuthScreen> {
             width: 160,
             child: Image.asset("assets/images/chat.png"),
           ),
-          Text(
+          const Text(
             "Welcome Back!",
             style: TextStyle(color: Colors.white),
           ),
