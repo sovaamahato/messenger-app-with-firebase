@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: Container(
-            color: Color.fromARGB(255, 231, 208, 235),
+            color: const Color.fromARGB(255, 231, 208, 235),
             child: _buildUserList()));
   }
 
@@ -55,11 +55,11 @@ class _HomePageState extends State<HomePage> {
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Container(child: const Text('error'));
+          return const Text('error');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(child: const Text("Loading..."));
+          return const Text("Loading...");
         }
         return ListView(
           children: snapshot.data!.docs

@@ -53,35 +53,33 @@ class _ChatPageState extends State<ChatPage> {
           //textfield to type message------------------
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                children: [
-                  Expanded(
-                      child: TextFormField(
-                    controller: _messageController,
-                    decoration: const InputDecoration(
-                      hintText: "Type a message...",
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 165, 91, 177),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 165, 91, 177),
-                        ),
+            child: Row(
+              children: [
+                Expanded(
+                    child: TextFormField(
+                  controller: _messageController,
+                  decoration: const InputDecoration(
+                    hintText: "Type a message...",
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 165, 91, 177),
                       ),
                     ),
-                  )),
-                  IconButton(
-                      onPressed: sendMessage,
-                      icon: const Icon(
-                        Icons.send,
-                        color: Colors.deepPurple,
-                        size: 30,
-                      ))
-                ],
-              ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 165, 91, 177),
+                      ),
+                    ),
+                  ),
+                )),
+                IconButton(
+                    onPressed: sendMessage,
+                    icon: const Icon(
+                      Icons.send,
+                      color: Colors.deepPurple,
+                      size: 30,
+                    ))
+              ],
             ),
           )
         ],
@@ -103,11 +101,11 @@ class _ChatPageState extends State<ChatPage> {
           return const Text("Loading");
         }
         if (!snapshot.hasData) {
-          return Text("No data");
+          return const Text("No data");
         } else {}
-        print("=============================");
-        print(snapshot.data);
-        print("Document Count: ${snapshot.data!.docs.length}");
+        // print("=============================");
+        //print(snapshot.data);
+        //print("Document Count: ${snapshot.data!.docs.length}");
         return ListView(
           children: snapshot.data!.docs
               .map((document) => _buildMessageItem(document))
@@ -154,7 +152,7 @@ class _ChatPageState extends State<ChatPage> {
               // Text("Message")
               Text(
                 formattedDateTime.toString(),
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
               ChatBubble(
                 isMe: isMe,
