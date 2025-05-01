@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text("Loading...");
+          return const Text("Loading......");
         }
         return ListView(
           children: snapshot.data!.docs
